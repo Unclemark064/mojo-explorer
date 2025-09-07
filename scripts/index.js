@@ -194,3 +194,24 @@ const serviceObserver = new IntersectionObserver((entries) => {
 serviceCards.forEach((card) => {
   serviceObserver.observe(card);
 });
+
+// FAQ Toggle Functionality
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+    const isOpen = answer.style.maxHeight;
+
+    // Close all other answers
+    document.querySelectorAll('.faq-answer').forEach(a => {
+      a.style.maxHeight = null;
+      a.previousElementSibling.classList.remove('active');
+    });
+
+    if (!isOpen) {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      question.classList.add('active');
+    } else {
+      question.classList.remove('active');
+    }
+  });
+});
